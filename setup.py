@@ -26,14 +26,14 @@ long_description = '\n\n'.join(
 license = read('LICENSE.md')
 
 setup(
-    name='kan',
+    name='kan-alexandria',
     description=description,
     long_description=long_description,
-    author='Sang Han',
+    author='João Rodrigues',
     license=license,
-    url='https://github.com/jjangsangy/kan',
-    download_url='https://github.com/jjangsangy/kan.git',
-    author_email='jjangsangy@gmail.com',
+    url='https://github.com/joaodath/kan-alexandria',
+    download_url='https://github.com/joaodath/kan-alexandria',
+    author_email='joaorodriguesdiasneto@gmail.com',
     include_package_data=True,
     packages=['kan'],
     version=kan.__version__,
