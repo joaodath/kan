@@ -109,7 +109,7 @@ class GoogleBooksAPIClient(AbstractBaseAPIClient):
         # Optimizes amount of data requested
         fieldstring = 'fields={prefix}({fields})'.format(
             prefix='/'.join(['items', 'volumeInfo']),
-            fields=','.join(('authors', 'title', 'industryIdentifiers') + self.fields),
+            fields=','.join(('authors', 'title', 'industryIdentifiers', 'publisher', 'publishedDate', 'pageCount',) + self.fields),
         )
 
         return '&'.join(['?'.join([base, params]), fieldstring])

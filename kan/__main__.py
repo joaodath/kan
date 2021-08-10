@@ -95,7 +95,7 @@ def main():
         author=args.author,
         max_results=args.max,
         language_code=args.language,
-        fields=('title', 'authors', 'imageLinks', 'categories', 'description'),
+        fields=('title', 'authors', 'imageLinks', 'categories', 'description', 'publisher', 'publishedDate', 'pageCount'),
     )
 
     if args.verbose:
@@ -124,12 +124,35 @@ def main():
         else:
             isbn_id, isbn = 'ISBN_##', 'N/A'
 
+        #clean up if there is info missing
+        if 'imageLinks' not in info:
+            info['imageLinks'] = 'N/A'
+        else:
+            info['imageLinks'] = info['imageLinks']['thumbnail']
+        if 'categories' not in info:
+            info['categories'] = 'N/A'
+        if 'description' not in info:
+            info['description'] = 'N/A'
+        if 'publisher' not in info:
+            info['publisher'] = 'N/A'
+        if 'publishedDate' not in info:
+            info['publishedDate'] = 'N/A'
+        if 'pageCount' not in info:
+            info['pageCount'] = 'N/A'
+        
+
         # Format/Print
-        display = 'Title: {title}\nAuthor: {authors}\n{isbn_id}: {isbn}\n'.format(
+        display = 'Title: {title}\nAuthor: {authors}\n{isbn_id}: {isbn}\nCategories: {categories}\nDescription: {description}\nIMG: {imageLinks}\nPublisher: {publisher}\nPublished: {publishedDate}\nPageCount: {pageCount}'.format(
             title=info['title'],
             authors=', '.join(info.get('authors', ['N/A'])),
             isbn_id=isbn_id,
             isbn=isbn,
+            imageLinks= info['imageLinks'], 
+            categories= info['categories'], 
+            description= info['description'],
+            publisher= info['publisher'],
+            publishedDate= info['publishedDate'],
+            pageCount= info['pageCount'],
         )
 
         print(display)
